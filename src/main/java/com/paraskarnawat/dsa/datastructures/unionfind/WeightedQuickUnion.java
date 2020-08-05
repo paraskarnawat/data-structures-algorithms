@@ -16,7 +16,7 @@ public class WeightedQuickUnion {
     private int numberOfComponents;
 
     // array to store the connected components
-    private final int[] id;
+    private int[] id;
 
     // array to store the size of each component
     private int[] sz;

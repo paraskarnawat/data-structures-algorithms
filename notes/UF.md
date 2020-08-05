@@ -12,9 +12,7 @@ Given a set of N objects, there are two functions to be performed:
    1. **Union**: connect two objects.
    2. **Find**: who is the parent of a particular object? This can be used to find whether two objects are `connected` i.e. their parents are same.
     
-<p align="center">
-    <img src="https://i.gifer.com/QFLm.gif" alt="UF-visualization">
-</p>
+![uf-visualisation " "](../images/uf.gif)
 
 The `connected` command is an equivalence relation:
   - **Reflexive**: `p` is connected to `p`.
