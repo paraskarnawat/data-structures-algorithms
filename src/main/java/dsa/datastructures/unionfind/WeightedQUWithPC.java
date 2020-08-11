@@ -1,4 +1,4 @@
-package com.paraskarnawat.dsa.datastructures.unionfind;
+package dsa.datastructures.unionfind;
 
 /**
  * Union-Find data structure using weighted or ranked quick-union with path compression algorithm.

@@ -1,4 +1,4 @@
-package com.paraskarnawat.dsa.datastructures.queue;
+package dsa.datastructures.queue;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -22,11 +22,11 @@ public class Queue<T> implements Iterable<T> {
     private Node<T> front;
     private Node<T> rear;
 
-    private class Node<E> {
-        private E data;
-        private Node<E> next;
+    private static class Node<T> {
+        private final T data;
+        private Node<T> next;
 
-        public Node(E element) {
+        public Node(T element) {
             data = element;
             next = null;
         }

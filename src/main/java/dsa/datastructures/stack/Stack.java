@@ -1,4 +1,4 @@
-package com.paraskarnawat.dsa.datastructures.stack;
+package dsa.datastructures.stack;
 
 import java.util.Arrays;
 import java.util.Iterator;

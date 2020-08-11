@@ -1,42 +1,38 @@
-package com.paraskarnawat.dsa.datastructures.unionfind;
+package dsa.datastructures.unionfind;
 
 /**
- * Union-Find data structure using weighted or ranked quick-union algorithm.
+ * Union-Find data structure using quick-find algorithm (eager approach).
  * <p>
- * {@code find} operation takes <em>O(lg n)</em> time.
- * {@code union} operation takes <em>O(lg n)</em> time.
+ * {@code find} operation takes <em>O(1)</em> time.
+ * {@code union} operation takes <em>O(n)</em> time.
  *
- * The general idea is to connect the smaller tree below the larger tree to avoid tall trees.
+ * This is an expensive algorithm, but easy to implement.
  * <p>
  *
  * @author Paras Karnawat
  */
-public class WeightedQuickUnion {
+public class QuickFind {
+
     // number of connected components
     private int numberOfComponents;
 
     // array to store the connected components
     private int[] id;
 
-    // array to store the size of each component
-    private int[] sz;
-
     /**
-     * Constructor for class WeightedQuickUnion. Initializes the required attributes.
+     * Constructor for class QuickFind. Initializes the required attributes.
      *
      * @param size number of elements
      */
-    public WeightedQuickUnion(int size) {
+    public QuickFind(int size) {
         if (size <= 0) {
             throw new IllegalArgumentException("Size must be greater than 0. You provided " + size);
         }
         numberOfComponents = size;
         id = new int[size];
-        sz = new int[size];
         for (int i = 0; i < size; i++) {
-            // Initially, each component is in individual set and has only one element
+            // Initially, each component is in individual set
             id[i] = i;
-            sz[i] = 1;
         }
     }
 
@@ -50,20 +46,6 @@ public class WeightedQuickUnion {
         if (p < 0 || p > (id.length - 1)) {
             throw new IllegalArgumentException("Provided index must be 0 <= p < " + id.length + ". You provided " + p + ".");
         }
-    }
-
-    /**
-     * Finds the root of element {@code p}
-     * @param p an element
-     * @return root of {@code p}
-     */
-    private int root(int p) {
-        validate(p);
-        // loop until the parent is found
-        while (p != id[p]) {
-            p = id[p];
-        }
-        return p;
     }
 
     /**
@@ -85,18 +67,7 @@ public class WeightedQuickUnion {
     }
 
     /**
-     * Get the number of elements in the set {@code p} belongs to
-     *
-     * @param p an element
-     * @return number of elements in the set containing {@code p}
-     */
-    public int componentSize(int p) {
-        int parent = root(p);
-        return sz[parent];
-    }
-
-    /**
-     * Get the parent of the component {@code p} belongs to
+     * Get the canonical element of the component {@code p} belongs to
      *
      * @param p an element
      * @return parent of {@code p}
@@ -104,7 +75,7 @@ public class WeightedQuickUnion {
      */
     public int find(int p) throws IllegalArgumentException {
         validate(p);
-        return root(p);
+        return id[p];
     }
 
     /**
@@ -117,19 +88,17 @@ public class WeightedQuickUnion {
     public void union(int p, int q) throws IllegalArgumentException {
         validate(p);
         validate(q);
-        int pid = root(p);
-        int qid = root(q);
+        int pid = id[p];
+        int qid = id[q];
 
         if (pid == qid) {
             return;
         }
 
-        if (sz[pid] < sz[qid]) {
-            id[pid] = qid;
-            sz[qid] += sz[pid]; // update the size
-        } else {
-            id[qid] = pid;
-            sz[pid] += sz[qid]; // update the size
+        for (int i = 0; i < id.length; i++) {
+            if (id[i] == pid) {
+                id[i] = qid;
+            }
         }
         numberOfComponents--;
     }
@@ -143,6 +112,7 @@ public class WeightedQuickUnion {
      * @throws IllegalArgumentException unless {@code 0 <= p < size}
      */
     public boolean connected(int p, int q) throws IllegalArgumentException {
-        return root(p) == root(q);
+        return find(p) == find(q);
     }
+
 }

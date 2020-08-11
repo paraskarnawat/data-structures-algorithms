@@ -1,6 +1,6 @@
-package com.paraskarnawat.dsa.datastructures.stack;
+package dsa.datastructures.stack;
 
-import com.paraskarnawat.dsa.datastructures.queue.Queue;
+import dsa.datastructures.stack.Stack;
 import org.junit.Test;
 
 import java.util.ArrayList;

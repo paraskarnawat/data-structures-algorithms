@@ -39,7 +39,7 @@ This is also called as eager approach. In this method, `p` and `q` are connected
 
 **Union**: To merge components containing `p` and `q`, change all entries whose id equals `id[p]` to `id[q]`.
 
-Code can be found [here](../src/main/java/com/paraskarnawat/dsa/datastructures/unionfind/QuickFind.java).
+Code can be found [here](../src/main/java/dsa/datastructures/unionfind/QuickFind.java).
 
 > Here the `find` operation is quick **_O(1)_** however `union` command is too expensive. If there are `m` union commands and `n` number of objects, then `union` will have quadratic time complexity i.e. **_O(nm)_**. The trees are flat, but too expensive to keep them flat.
 
@@ -55,7 +55,7 @@ This is also called the lazy approach. In this approach, `id[i]` is the parent o
     <img src="https://algs4.cs.princeton.edu/15uf/images/quick-union-overview.png" alt="quick-find">
 </p>
 
-Code can be found [here](../src/main/java/com/paraskarnawat/dsa/datastructures/unionfind/QuickUnion.java).
+Code can be found [here](../src/main/java/dsa/datastructures/unionfind/QuickUnion.java).
 
 > Here the single `union` and `find` command have time complexity of **_O(n)_** (worst case). The trees can get tall and `find` command is too expensive.
 
@@ -74,7 +74,7 @@ It is same as quick-union, but we maintain an extra array of size[] to count the
 
 **Union**: Modify the quick-union to link the root of smaller tree to root of larger tree and update the `size` array.
 
-Code can be found [here](../src/main/java/com/paraskarnawat/dsa/datastructures/unionfind/WeightedQuickUnion.java).
+Code can be found [here](../src/main/java/dsa/datastructures/unionfind/WeightedQuickUnion.java).
 
 > `find` takes time proportional to depth of `p` and `q`. `union` takes constant time, given roots. Moreover, depth of any node is at most `log2(N)`. Thus, both the operations have time complexity of **_O(lg N)_** for a single operation.
 
@@ -96,7 +96,7 @@ However, only the `root` function is changed.
     <img src="https://raw.githubusercontent.com/e-maxx-eng/e-maxx-eng/master/img/DSU_path_compression.png" alt="effect of path compression">
 </p>
 
-Code can be found [here](../src/main/java/com/paraskarnawat/dsa/datastructures/unionfind/WeightedQUWithPC.java).
+Code can be found [here](../src/main/java/dsa/datastructures/unionfind/WeightedQUWithPC.java).
 
 > This small improvement improves the time-complexity of `m` union-find operations on `n` objects to __c(n + m lg*(n))__ array accesses which is an iterative log function. If `n = 65536` then `lg*(n) = 4`. It is the number of times the logarithm function should be applied before the result is less than or equal to 1.
 

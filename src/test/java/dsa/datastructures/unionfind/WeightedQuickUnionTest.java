@@ -1,15 +1,16 @@
-package com.paraskarnawat.dsa.datastructures.unionfind;
+package dsa.datastructures.unionfind;
 
+import dsa.datastructures.unionfind.WeightedQuickUnion;
 import org.junit.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 
-public class WeightedQUWithPCTest {
+public class WeightedQuickUnionTest {
 
     @Test
     public void testNumberOfComponents() {
-        WeightedQUWithPC uf = new WeightedQUWithPC(10);
+        WeightedQuickUnion uf = new WeightedQuickUnion(10);
         assertEquals(10, uf.components());
 
         uf.union(0, 1);
@@ -34,7 +35,7 @@ public class WeightedQUWithPCTest {
 
     @Test
     public void testSize() {
-        WeightedQUWithPC uf = new WeightedQUWithPC(5);
+        WeightedQuickUnion uf = new WeightedQuickUnion(5);
         assertEquals(5, uf.size());
         uf.union(1, 2);
         assertEquals(5, uf.size());
@@ -42,7 +43,7 @@ public class WeightedQUWithPCTest {
 
     @Test
     public void testComponentSize() {
-        WeightedQUWithPC uf = new WeightedQUWithPC(5);
+        WeightedQuickUnion uf = new WeightedQuickUnion(5);
         assertEquals(1, uf.componentSize(1));
         uf.union(1, 2);
         assertEquals(2, uf.componentSize(2));
@@ -57,7 +58,7 @@ public class WeightedQUWithPCTest {
 
     @Test
     public void testFindAndConnected() {
-        WeightedQUWithPC uf = new WeightedQUWithPC(5);
+        WeightedQuickUnion uf = new WeightedQuickUnion(5);
 
         assertEquals(1, uf.find(1));
         assertFalse(uf.connected(1, 2));
@@ -72,17 +73,17 @@ public class WeightedQUWithPCTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testZeroElements() {
-        new WeightedQUWithPC(0);
+        new WeightedQuickUnion(0);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testNegativeElements() {
-        new WeightedQUWithPC(-10);
+        new WeightedQuickUnion(-10);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testOutOfBounds() {
-        WeightedQUWithPC uf = new WeightedQUWithPC(5);
+        WeightedQuickUnion uf = new WeightedQuickUnion(5);
         uf.connected(1, 9);
     }
 

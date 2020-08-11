@@ -1,4 +1,4 @@
-package com.paraskarnawat.dsa.datastructures.trees;
+package dsa.datastructures.trees;
 
 public enum Traversal {
     PREORDER,

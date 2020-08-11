@@ -1,15 +1,16 @@
-package com.paraskarnawat.dsa.datastructures.unionfind;
+package dsa.datastructures.unionfind;
 
+import dsa.datastructures.unionfind.WeightedQUWithPC;
 import org.junit.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 
-public class QuickFindTest {
+public class WeightedQUWithPCTest {
 
     @Test
     public void testNumberOfComponents() {
-        QuickFind uf = new QuickFind(10);
+        WeightedQUWithPC uf = new WeightedQUWithPC(10);
         assertEquals(10, uf.components());
 
         uf.union(0, 1);
@@ -34,38 +35,55 @@ public class QuickFindTest {
 
     @Test
     public void testSize() {
-        QuickFind uf = new QuickFind(10);
-        assertEquals(10, uf.size());
+        WeightedQUWithPC uf = new WeightedQUWithPC(5);
+        assertEquals(5, uf.size());
         uf.union(1, 2);
-        assertEquals(10, uf.size());
+        assertEquals(5, uf.size());
+    }
+
+    @Test
+    public void testComponentSize() {
+        WeightedQUWithPC uf = new WeightedQUWithPC(5);
+        assertEquals(1, uf.componentSize(1));
+        uf.union(1, 2);
+        assertEquals(2, uf.componentSize(2));
+        uf.union(2, 1);
+        assertEquals(2, uf.componentSize(1));
+        uf.union(2, 3);
+        uf.union(1, 4);
+        uf.union(0, 4);
+        assertEquals(5, uf.componentSize(4));
+        assertEquals(5, uf.componentSize(0));
     }
 
     @Test
     public void testFindAndConnected() {
-        QuickFind uf = new QuickFind(5);
+        WeightedQUWithPC uf = new WeightedQUWithPC(5);
 
         assertEquals(1, uf.find(1));
         assertFalse(uf.connected(1, 2));
 
         uf.union(1, 2);
-        assertEquals(2, uf.find(1));
+        assertEquals(1, uf.find(1));
+        uf.union(1, 3);
+        assertEquals(1, uf.find(3));
         assertTrue(uf.connected(1, 2));
-        assertFalse(uf.connected(1, 3));
+        assertFalse(uf.connected(1, 4));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testZeroElements() {
-        new QuickFind(0);
+        new WeightedQUWithPC(0);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testNegativeElements() {
-        new QuickFind(-10);
+        new WeightedQUWithPC(-10);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testOutOfBounds() {
-        QuickFind uf = new QuickFind(5);
+        WeightedQUWithPC uf = new WeightedQUWithPC(5);
         uf.connected(1, 9);
     }
 

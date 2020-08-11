@@ -1,15 +1,15 @@
-package com.paraskarnawat.dsa.datastructures.unionfind;
+package dsa.datastructures.unionfind;
 
 import org.junit.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 
-public class QuickUnionTest {
+public class QuickFindTest {
 
     @Test
     public void testNumberOfComponents() {
-        QuickUnion uf = new QuickUnion(10);
+        QuickFind uf = new QuickFind(10);
         assertEquals(10, uf.components());
 
         uf.union(0, 1);
@@ -34,15 +34,15 @@ public class QuickUnionTest {
 
     @Test
     public void testSize() {
-        QuickUnion uf = new QuickUnion(5);
-        assertEquals(5, uf.size());
+        QuickFind uf = new QuickFind(10);
+        assertEquals(10, uf.size());
         uf.union(1, 2);
-        assertEquals(5, uf.size());
+        assertEquals(10, uf.size());
     }
 
     @Test
     public void testFindAndConnected() {
-        QuickUnion uf = new QuickUnion(5);
+        QuickFind uf = new QuickFind(5);
 
         assertEquals(1, uf.find(1));
         assertFalse(uf.connected(1, 2));
@@ -55,17 +55,17 @@ public class QuickUnionTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testZeroElements() {
-        new QuickUnion(0);
+        new QuickFind(0);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testNegativeElements() {
-        new QuickUnion(-10);
+        new QuickFind(-10);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testOutOfBounds() {
-        QuickUnion uf = new QuickUnion(5);
+        QuickFind uf = new QuickFind(5);
         uf.connected(1, 9);
     }
 

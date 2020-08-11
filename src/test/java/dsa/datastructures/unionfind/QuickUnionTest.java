@@ -1,15 +1,16 @@
-package com.paraskarnawat.dsa.datastructures.unionfind;
+package dsa.datastructures.unionfind;
 
+import dsa.datastructures.unionfind.QuickUnion;
 import org.junit.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 
-public class WeightedQuickUnionTest {
+public class QuickUnionTest {
 
     @Test
     public void testNumberOfComponents() {
-        WeightedQuickUnion uf = new WeightedQuickUnion(10);
+        QuickUnion uf = new QuickUnion(10);
         assertEquals(10, uf.components());
 
         uf.union(0, 1);
@@ -34,55 +35,38 @@ public class WeightedQuickUnionTest {
 
     @Test
     public void testSize() {
-        WeightedQuickUnion uf = new WeightedQuickUnion(5);
+        QuickUnion uf = new QuickUnion(5);
         assertEquals(5, uf.size());
         uf.union(1, 2);
         assertEquals(5, uf.size());
-    }
-
-    @Test
-    public void testComponentSize() {
-        WeightedQuickUnion uf = new WeightedQuickUnion(5);
-        assertEquals(1, uf.componentSize(1));
-        uf.union(1, 2);
-        assertEquals(2, uf.componentSize(2));
-        uf.union(2, 1);
-        assertEquals(2, uf.componentSize(1));
-        uf.union(2, 3);
-        uf.union(1, 4);
-        uf.union(0, 4);
-        assertEquals(5, uf.componentSize(4));
-        assertEquals(5, uf.componentSize(0));
     }
 
     @Test
     public void testFindAndConnected() {
-        WeightedQuickUnion uf = new WeightedQuickUnion(5);
+        QuickUnion uf = new QuickUnion(5);
 
         assertEquals(1, uf.find(1));
         assertFalse(uf.connected(1, 2));
 
         uf.union(1, 2);
-        assertEquals(1, uf.find(1));
-        uf.union(1, 3);
-        assertEquals(1, uf.find(3));
+        assertEquals(2, uf.find(1));
         assertTrue(uf.connected(1, 2));
-        assertFalse(uf.connected(1, 4));
+        assertFalse(uf.connected(1, 3));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testZeroElements() {
-        new WeightedQuickUnion(0);
+        new QuickUnion(0);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testNegativeElements() {
-        new WeightedQuickUnion(-10);
+        new QuickUnion(-10);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testOutOfBounds() {
-        WeightedQuickUnion uf = new WeightedQuickUnion(5);
+        QuickUnion uf = new QuickUnion(5);
         uf.connected(1, 9);
     }
 

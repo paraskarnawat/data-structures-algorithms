@@ -1,7 +1,7 @@
-package com.paraskarnawat.dsa.datastructures.trees;
+package dsa.datastructures.trees;
 
-import com.paraskarnawat.dsa.datastructures.queue.Queue;
-import com.paraskarnawat.dsa.datastructures.stack.Stack;
+import dsa.datastructures.queue.Queue;
+import dsa.datastructures.stack.Stack;
 
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
@@ -92,13 +92,10 @@ public class BST<T extends Comparable<T>> {
      * @param element an element to add
      * @return {@code true} if added successfully, {@code false} otherwise.
      */
-    public boolean add(T element) {
-        if (contains(element)) {
-            return false;
-        } else {
+    public void add(T element) {
+        if (!contains(element)) {
             root = add(root, element);
             nodeCount++;
-            return true;
         }
     }
 
@@ -107,27 +104,39 @@ public class BST<T extends Comparable<T>> {
         if (node == null) {
             return new Node(element);
         }
-        if (element.compareTo(node.data) < 0) {
-            node.left = add(root.left, element);
-        } else {
-            node.right = add(node.right, element);
+        Node current = node;
+        while (true)
+        {
+            if (element.compareTo(current.data) < 0) {
+                if (current.left != null) {
+                    current = current.left;
+                } else {
+                    current.left = new Node(element);
+                    break;
+                }
+            } else {
+                if (current.right != null) {
+                    current = current.right;
+                } else {
+                    current.right = new Node(element);
+                    break;
+                }
+            }
         }
-        return root;
+
+        return node;
     }
 
     /**
      * Remove an element from this tree.
      *
      * @param element an element to remove
-     * @return {@code true} if removed successfully, {@code false} otherwise.
      */
-    public boolean remove(T element) {
+    public void remove(T element) {
         if (contains(element)) {
             root = remove(root, element);
             nodeCount--;
-            return true;
         }
-        return false;
     }
 
     // remove the given element from this tree
