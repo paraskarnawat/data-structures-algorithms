@@ -13,8 +13,6 @@
 
 ## Array
 
-<p align="center">
-
 | Problem Statement                                                                                           |                                     Solution | Difficulty |
 |:------------------------------------------------------------------------------------------------------------|---------------------------------------------:|:----------:|
 | [Two Sum](https://leetcode.com/problems/two-sum/)                                                           |                    [Java](array/TwoSum.java) |    Easy    |
@@ -27,5 +25,3 @@
 | [Search in Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array/)             |  [Java](array/SearchRotatedSortedArray.java) |   Medium   |
 | [3Sum](https://leetcode.com/problems/3sum/)                                                                 |                  [Java](array/ThreeSum.java) |   Medium   |
 | [Container with Most Water](https://leetcode.com/problems/container-with-most-water/)                       |    [Java](array/ContainerWithMostWater.java) |   Medium   |
-
-</p>
